@@ -295,7 +295,11 @@
       <p class="demo-section__desc">Dialog dengan overlay, animasi pop, dan tombol escape.</p>
 
       <div class="demo-preview">
-        <button class="br-btn br-btn--primary" data-br-modal-open="#modalDemo">Buka Modal</button>
+<button class="br-btn br-btn--primary"
+        data-br-modal-open="#modalDemo"
+        onclick="window.BrutalistUI && window.BrutalistUI.openModal('#modalDemo')">
+  Buka Modal
+</button>
       </div>
 
       <pre class="demo-code"><button class="demo-code__copy" data-copy>Copy</button><code>&lt;button class="br-btn br-btn--primary" data-br-modal-open="#modalDemo"&gt;
