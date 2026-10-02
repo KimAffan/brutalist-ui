@@ -1,6 +1,3 @@
-# brutalist-ui
-Neo-Brutalism UI component library — lightweight, zero dependencies, dark mode. Built with vanilla HTML, CSS &amp; JS.
-
 # Brutalist UI
 
 Library komponen UI **Neo-Brutalism** yang ringan, tanpa dependencies, dan mendukung **dark mode dinamis**. Dibuat dengan HTML, CSS, dan Vanilla JavaScript murni — tinggal copy-paste, langsung pakai.
