@@ -7,7 +7,7 @@
   display: grid;
   grid-template-columns: 260px 1fr;
   min-height: 100vh;
-  align-items: start; /* ⭐ FIX: cegah item stretch setinggi konten utama */
+  align-items: start;
 }
 
 /* — Sidebar — */
@@ -19,12 +19,11 @@
   overflow-x: hidden;
   border-right: 3px solid var(--br-border);
   background: var(--br-surface-alt);
-  padding: 1.25rem 0.75rem 3rem 1rem; /* ⭐ padding-bottom ekstra */
-  scrollbar-width: thin;               /* Firefox */
+  padding: 1.25rem 0.75rem 3rem 1rem;
+  scrollbar-width: thin;
   scrollbar-color: var(--br-border) var(--br-surface);
 }
 
-/* ⭐ Scrollbar custom agar kelihatan jelas (WebKit) */
 .demo-sidebar::-webkit-scrollbar { width: 10px; }
 .demo-sidebar::-webkit-scrollbar-track {
   background: var(--br-surface);
@@ -34,9 +33,7 @@
   background: var(--br-border);
   border: 2px solid var(--br-surface);
 }
-.demo-sidebar::-webkit-scrollbar-thumb:hover {
-  background: var(--br-primary);
-}
+.demo-sidebar::-webkit-scrollbar-thumb:hover { background: var(--br-primary); }
 
 .demo-sidebar__brand {
   font-size: 1.3rem;
@@ -57,32 +54,21 @@
   font-size: 0.9rem;
 }
 
-.demo-sidebar__nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-}
+.demo-sidebar__nav { display: flex; flex-direction: column; gap: 0.1rem; }
 
 .demo-sidebar__nav a {
   display: block;
-  padding: 0.42rem 0.65rem;   /* ⭐ sedikit lebih rapat */
+  padding: 0.42rem 0.65rem;
   text-decoration: none;
   font-weight: 700;
-  font-size: 0.83rem;          /* ⭐ sedikit lebih kecil */
+  font-size: 0.83rem;
   color: var(--br-text);
   border: 2px solid transparent;
   transition: background 150ms, border-color 150ms;
 }
 
-.demo-sidebar__nav a:hover {
-  background: var(--br-secondary);
-  border-color: var(--br-border);
-}
-
-.demo-sidebar__nav a.is-active {
-  background: var(--br-primary);
-  border-color: var(--br-border);
-}
+.demo-sidebar__nav a:hover { background: var(--br-secondary); border-color: var(--br-border); }
+.demo-sidebar__nav a.is-active { background: var(--br-primary); border-color: var(--br-border); }
 
 .demo-sidebar__group {
   font-size: 0.68rem;
@@ -98,7 +84,7 @@
 .demo-main {
   padding: 2rem 2.5rem;
   max-width: 1100px;
-  min-width: 0; /* ⭐ cegah overflow di grid */
+  min-width: 0;
 }
 
 .demo-topbar {
@@ -123,10 +109,7 @@
 .demo-hero p  { margin: 0; font-weight: 600; max-width: 600px; }
 
 /* — Section — */
-.demo-section {
-  margin-bottom: 4rem;
-  scroll-margin-top: 1rem;
-}
+.demo-section { margin-bottom: 4rem; scroll-margin-top: 90px; }
 
 .demo-section__title {
   font-size: 1.8rem;
@@ -165,9 +148,27 @@
   font-family: var(--br-font-mono);
   font-size: 0.82rem;
   overflow-x: auto;
+  overflow-y: hidden;
   margin-bottom: 1.5rem;
   white-space: pre;
   line-height: 1.5;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--br-primary) #0F0F0F;
+}
+
+.demo-code::-webkit-scrollbar { height: 10px; }
+.demo-code::-webkit-scrollbar-track { background: #1A1A1A; }
+.demo-code::-webkit-scrollbar-thumb {
+  background: var(--br-primary);
+  border: 2px solid #0F0F0F;
+}
+
+.demo-code code {
+  display: block;
+  font-family: inherit;
+  font-size: inherit;
+  white-space: pre;
 }
 
 .demo-code__copy {
@@ -183,34 +184,159 @@
   font-weight: 800;
   cursor: pointer;
   text-transform: uppercase;
+  z-index: 2;
 }
 
 .demo-code__copy:hover { background: var(--br-primary); color: #1A1A1A; }
 
-/* — Responsive — */
+/* =====================================================
+   TABLET  (≤ 1024px)
+   ===================================================== */
+@media (max-width: 1024px) {
+  .demo-layout { grid-template-columns: 220px 1fr; }
+  .demo-main { padding: 1.75rem; }
+  .demo-hero { padding: 1.75rem; }
+  .demo-hero h1 { font-size: 2rem; }
+  .demo-section__title { font-size: 1.5rem; }
+}
+
+/* =====================================================
+   MOBILE  (≤ 768px)
+   ===================================================== */
 @media (max-width: 768px) {
-  .demo-layout { grid-template-columns: 1fr; }
+  /* — Layout jadi 1 kolom — */
+  .demo-layout {
+    display: block;
+    min-height: auto;
+  }
+
+  /* — Sidebar jadi top bar dengan chip nav horizontal — */
   .demo-sidebar {
-    position: static;
+    position: sticky;
+    top: 0;
+    z-index: 50;
     height: auto;
+    overflow: visible;
     border-right: none;
     border-bottom: 3px solid var(--br-border);
-    padding: 1rem;
+    padding: 0.75rem 0.85rem 0.6rem;
+    box-shadow: 0 3px 0 0 var(--br-border);
   }
+
   .demo-sidebar::-webkit-scrollbar { display: none; }
+
+  .demo-sidebar__brand {
+    font-size: 1.05rem;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.5rem;
+    border-bottom-width: 2px;
+  }
+
+  .demo-sidebar__brand span {
+    font-size: 0.72rem;
+    padding: 0.05rem 0.32rem;
+    border-width: 2px;
+  }
+
+  /* Nav jadi baris chip yang bisa di-scroll horizontal */
   .demo-sidebar__nav {
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 0.35rem;
+    overflow-x: auto;
+    padding-bottom: 0.2rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -0.85rem;
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
   }
+
+  .demo-sidebar__nav::-webkit-scrollbar { display: none; }
+
   .demo-sidebar__nav a {
+    flex-shrink: 0;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.78rem;
     border: 2px solid var(--br-border);
-    padding: 0.35rem 0.6rem;
+    background: var(--br-surface);
+    white-space: nowrap;
   }
-  .demo-sidebar__group {
-    width: 100%;
-    margin: 0.5rem 0 0.25rem;
+
+  .demo-sidebar__group { display: none; }
+
+  /* — Main — */
+  .demo-main {
+    padding: 1.25rem 1rem;
+    max-width: 100%;
   }
-  .demo-main { padding: 1.25rem; }
-  .demo-hero h1 { font-size: 1.8rem; }
+
+  .demo-topbar { margin-bottom: 1.25rem; gap: 0.5rem; }
+  .demo-topbar .br-btn { font-size: 0.78rem; padding: 0.45rem 0.7rem; }
+
+  /* — Hero — */
+  .demo-hero {
+    padding: 1.25rem;
+    box-shadow: 5px 5px 0 0 var(--br-shadow-color);
+    margin-bottom: 2rem;
+  }
+  .demo-hero h1 { font-size: 1.65rem; }
+  .demo-hero p  { font-size: 0.88rem; }
+
+  /* — Section — */
+  .demo-section { margin-bottom: 2.75rem; scroll-margin-top: 130px; }
+  .demo-section__title { font-size: 1.3rem; padding-bottom: 0.35rem; }
+  .demo-section__desc  { font-size: 0.82rem; margin-bottom: 1rem; }
+
+  /* — Preview — */
+  .demo-preview {
+    padding: 1rem;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+  }
+
+  /* ⭐ CODE BLOCK: rasio mobile — font lebih kecil, padding-top untuk copy button — */
+  .demo-code {
+    font-size: 0.72rem;
+    line-height: 1.55;
+    padding: 2.4rem 0.75rem 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .demo-code::-webkit-scrollbar { height: 8px; }
+
+  .demo-code__copy {
+    top: 0.4rem;
+    right: 0.4rem;
+    padding: 0.22rem 0.5rem;
+    font-size: 0.62rem;
+  }
+}
+
+/* =====================================================
+   SMALL MOBILE  (≤ 480px)
+   ===================================================== */
+@media (max-width: 480px) {
+  .demo-main { padding: 1rem 0.85rem; }
+
+  .demo-hero h1 { font-size: 1.4rem; letter-spacing: -0.03em; }
+  .demo-hero p  { font-size: 0.82rem; }
+
+  .demo-section__title { font-size: 1.15rem; }
+
+  .demo-code {
+    font-size: 0.66rem;
+    padding: 2.3rem 0.6rem 0.6rem;
+  }
+
+  .demo-code__copy {
+    font-size: 0.58rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .demo-preview { padding: 0.85rem; gap: 0.5rem; }
+
+  .demo-sidebar { padding: 0.6rem 0.7rem 0.5rem; }
+  .demo-sidebar__brand { font-size: 0.95rem; }
+  .demo-sidebar__nav a { font-size: 0.72rem; padding: 0.3rem 0.6rem; }
 }
