@@ -10,17 +10,14 @@
      ------------------------------------------------- */
   (function wrapCodeBlocks() {
     document.querySelectorAll(".demo-code").forEach((pre) => {
-      // Skip kalau sudah dibungkus
       if (pre.parentElement.classList.contains("demo-code-wrap")) return;
 
       const wrapper = document.createElement("div");
       wrapper.className = "demo-code-wrap";
 
-      // Ambil tombol Copy dari dalam <pre>
       const copyBtn = pre.querySelector(".demo-code__copy");
       if (copyBtn) pre.removeChild(copyBtn);
 
-      // Sisipkan wrapper di posisi <pre>, lalu pindahkan <pre> + button ke dalamnya
       pre.parentNode.insertBefore(wrapper, pre);
       wrapper.appendChild(pre);
       if (copyBtn) wrapper.appendChild(copyBtn);
@@ -34,7 +31,6 @@
     const btn = e.target.closest("[data-copy]");
     if (!btn) return;
 
-    // Cari code di wrapper (parent tombol), fallback ke .demo-code
     const wrapper = btn.closest(".demo-code-wrap") || btn.parentElement;
     const code = wrapper ? wrapper.querySelector("code") : null;
     if (!code) return;
