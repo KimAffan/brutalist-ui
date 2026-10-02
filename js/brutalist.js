@@ -6,7 +6,7 @@
   "use strict";
 
   /* --------------------------------------------------
-     1. THEME (Dark Mode Dinamis + LocalStorage)
+     1. THEME
      -------------------------------------------------- */
   const THEME_KEY = "brutalist-theme";
 
@@ -48,7 +48,10 @@
      -------------------------------------------------- */
   function openModal(selector) {
     const modal = document.querySelector(selector);
-    if (!modal) return;
+    if (!modal) {
+      console.warn("[BrutalistUI] Modal not found:", selector);
+      return;
+    }
     modal.classList.add("is-open");
     document.body.style.overflow = "hidden";
     const focusable = modal.querySelector("button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])");
@@ -62,11 +65,13 @@
     }
   }
   function initModals() {
-    document.addEventListener("click", (e) => {
+    // Fallback 1: delegation
+    document.addEventListener("click", function (e) {
       const opener = e.target.closest("[data-br-modal-open]");
       if (opener) {
         e.preventDefault();
-        openModal(opener.getAttribute("data-br-modal-open"));
+        const sel = opener.getAttribute("data-br-modal-open");
+        openModal(sel);
         return;
       }
       const closer = e.target.closest("[data-br-modal-close]");
@@ -75,12 +80,20 @@
         closeModal(closer.closest(".br-modal"));
         return;
       }
-      // klik overlay untuk close
       if (e.target.classList.contains("br-modal__overlay")) {
         closeModal(e.target.closest(".br-modal"));
       }
     });
-    document.addEventListener("keydown", (e) => {
+
+    // Fallback 2: langsung attach ke setiap tombol (jaga-jaga delegation gagal)
+    document.querySelectorAll("[data-br-modal-open]").forEach(function (btn) {
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        openModal(btn.getAttribute("data-br-modal-open"));
+      });
+    });
+
+    document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") {
         document.querySelectorAll(".br-modal.is-open").forEach(closeModal);
       }
@@ -91,13 +104,13 @@
      3. ACCORDION
      -------------------------------------------------- */
   function initAccordions() {
-    document.addEventListener("click", (e) => {
+    document.addEventListener("click", function (e) {
       const header = e.target.closest(".br-accordion__header");
       if (!header) return;
       const item = header.closest(".br-accordion");
       const group = item.closest("[data-br-accordion-group]");
       if (group) {
-        group.querySelectorAll(".br-accordion.is-open").forEach((el) => {
+        group.querySelectorAll(".br-accordion.is-open").forEach(function (el) {
           if (el !== item) el.classList.remove("is-open");
         });
       }
@@ -109,16 +122,16 @@
      4. TABS
      -------------------------------------------------- */
   function initTabs() {
-    document.addEventListener("click", (e) => {
+    document.addEventListener("click", function (e) {
       const tab = e.target.closest("[data-br-tab]");
       if (!tab) return;
       const tabsRoot = tab.closest(".br-tabs");
       if (!tabsRoot) return;
       const target = tab.getAttribute("data-br-tab");
-      tabsRoot.querySelectorAll("[data-br-tab]").forEach((t) => t.classList.remove("is-active"));
-      tabsRoot.querySelectorAll(".br-tabs__panel").forEach((p) => p.classList.remove("is-active"));
+      tabsRoot.querySelectorAll("[data-br-tab]").forEach(function (t) { t.classList.remove("is-active"); });
+      tabsRoot.querySelectorAll(".br-tabs__panel").forEach(function (p) { p.classList.remove("is-active"); });
       tab.classList.add("is-active");
-      const panel = tabsRoot.querySelector(`[data-br-tab-panel="${target}"]`);
+      const panel = tabsRoot.querySelector('[data-br-tab-panel="' + target + '"]');
       if (panel) panel.classList.add("is-active");
     });
   }
@@ -127,20 +140,19 @@
      5. DROPDOWN
      -------------------------------------------------- */
   function initDropdowns() {
-    document.addEventListener("click", (e) => {
+    document.addEventListener("click", function (e) {
       const trigger = e.target.closest("[data-br-dropdown-trigger]");
       if (trigger) {
         e.preventDefault();
         const root = trigger.closest(".br-dropdown");
-        document.querySelectorAll(".br-dropdown.is-open").forEach((d) => {
+        document.querySelectorAll(".br-dropdown.is-open").forEach(function (d) {
           if (d !== root) d.classList.remove("is-open");
         });
         root.classList.toggle("is-open");
         return;
       }
-      // klik di luar → tutup semua
       if (!e.target.closest(".br-dropdown__menu")) {
-        document.querySelectorAll(".br-dropdown.is-open").forEach((d) => d.classList.remove("is-open"));
+        document.querySelectorAll(".br-dropdown.is-open").forEach(function (d) { d.classList.remove("is-open"); });
       }
     });
   }
@@ -149,7 +161,7 @@
      6. ALERT DISMISS
      -------------------------------------------------- */
   function initAlerts() {
-    document.addEventListener("click", (e) => {
+    document.addEventListener("click", function (e) {
       const btn = e.target.closest("[data-br-dismiss]");
       if (!btn) return;
       const alert = btn.closest(".br-alert");
@@ -157,7 +169,7 @@
         alert.style.transition = "opacity 150ms, transform 150ms";
         alert.style.opacity = "0";
         alert.style.transform = "translateX(20px)";
-        setTimeout(() => alert.remove(), 160);
+        setTimeout(function () { alert.remove(); }, 160);
       }
     });
   }
@@ -174,35 +186,39 @@
     }
     return c;
   }
-  function showToast(message, type = "info", duration = 3000) {
+  function showToast(message, type, duration) {
+    type = type || "info";
+    duration = duration == null ? 3000 : duration;
     const container = ensureToastContainer();
     const toast = document.createElement("div");
-    toast.className = `br-toast br-toast--${type}`;
-    toast.innerHTML = `<span>${message}</span>`;
+    toast.className = "br-toast br-toast--" + type;
+    toast.innerHTML = "<span>" + message + "</span>";
     container.appendChild(toast);
     if (duration > 0) {
-      setTimeout(() => {
+      setTimeout(function () {
         toast.classList.add("is-leaving");
-        setTimeout(() => toast.remove(), 200);
+        setTimeout(function () { toast.remove(); }, 200);
       }, duration);
     }
     return toast;
   }
 
   /* --------------------------------------------------
-     8. AUTO-INIT & GLOBAL EXPOSURE
+     8. INIT
      -------------------------------------------------- */
   function init() {
-    initTheme();
-    initModals();
-    initAccordions();
-    initTabs();
-    initDropdowns();
-    initAlerts();
+    try { initTheme(); } catch (e) { console.error("[BrutalistUI] initTheme error:", e); }
+    try { initModals(); } catch (e) { console.error("[BrutalistUI] initModals error:", e); }
+    try { initAccordions(); } catch (e) { console.error("[BrutalistUI] initAccordions error:", e); }
+    try { initTabs(); } catch (e) { console.error("[BrutalistUI] initTabs error:", e); }
+    try { initDropdowns(); } catch (e) { console.error("[BrutalistUI] initDropdowns error:", e); }
+    try { initAlerts(); } catch (e) { console.error("[BrutalistUI] initAlerts error:", e); }
 
-    document.addEventListener("click", (e) => {
+    document.addEventListener("click", function (e) {
       if (e.target.closest("[data-br-theme-toggle]")) toggleTheme();
     });
+
+    console.log("[BrutalistUI] Initialized ✓");
   }
 
   if (document.readyState === "loading") {
@@ -211,12 +227,11 @@
     init();
   }
 
-  // Expose API
   window.BrutalistUI = {
-    openModal,
-    closeModal,
-    showToast,
-    toggleTheme,
-    applyTheme,
+    openModal: openModal,
+    closeModal: closeModal,
+    showToast: showToast,
+    toggleTheme: toggleTheme,
+    applyTheme: applyTheme
   };
 })();
