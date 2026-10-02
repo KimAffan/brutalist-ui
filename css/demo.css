@@ -138,18 +138,22 @@
 
 .demo-preview--column { flex-direction: column; align-items: stretch; }
 
-/* — Code Block — */
-.demo-code {
+/* ⭐ Code Block Wrapper — anchor untuk tombol Copy (tidak ikut scroll) */
+.demo-code-wrap {
   position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.demo-code {
   border: 3px solid var(--br-border);
   background: #0F0F0F;
   color: #F5F1E8;
-  padding: 1rem;
+  padding: 2.4rem 1rem 1rem; /* padding-top untuk ruang tombol */
   font-family: var(--br-font-mono);
   font-size: 0.82rem;
   overflow-x: auto;
   overflow-y: hidden;
-  margin-bottom: 1.5rem;
+  margin: 0;
   white-space: pre;
   line-height: 1.5;
   -webkit-overflow-scrolling: touch;
@@ -179,7 +183,7 @@
   background: #0F0F0F;
   color: #F5F1E8;
   padding: 0.25rem 0.6rem;
-  font-family: inherit;
+  font-family: var(--br-font-mono);
   font-size: 0.7rem;
   font-weight: 800;
   cursor: pointer;
@@ -204,13 +208,8 @@
    MOBILE  (≤ 768px)
    ===================================================== */
 @media (max-width: 768px) {
-  /* — Layout jadi 1 kolom — */
-  .demo-layout {
-    display: block;
-    min-height: auto;
-  }
+  .demo-layout { display: block; min-height: auto; }
 
-  /* — Sidebar jadi top bar dengan chip nav horizontal — */
   .demo-sidebar {
     position: sticky;
     top: 0;
@@ -222,7 +221,6 @@
     padding: 0.75rem 0.85rem 0.6rem;
     box-shadow: 0 3px 0 0 var(--br-border);
   }
-
   .demo-sidebar::-webkit-scrollbar { display: none; }
 
   .demo-sidebar__brand {
@@ -231,14 +229,12 @@
     padding-bottom: 0.5rem;
     border-bottom-width: 2px;
   }
-
   .demo-sidebar__brand span {
     font-size: 0.72rem;
     padding: 0.05rem 0.32rem;
     border-width: 2px;
   }
 
-  /* Nav jadi baris chip yang bisa di-scroll horizontal */
   .demo-sidebar__nav {
     flex-direction: row;
     flex-wrap: nowrap;
@@ -251,9 +247,7 @@
     padding-left: 0.85rem;
     padding-right: 0.85rem;
   }
-
   .demo-sidebar__nav::-webkit-scrollbar { display: none; }
-
   .demo-sidebar__nav a {
     flex-shrink: 0;
     padding: 0.35rem 0.7rem;
@@ -262,19 +256,13 @@
     background: var(--br-surface);
     white-space: nowrap;
   }
-
   .demo-sidebar__group { display: none; }
 
-  /* — Main — */
-  .demo-main {
-    padding: 1.25rem 1rem;
-    max-width: 100%;
-  }
+  .demo-main { padding: 1.25rem 1rem; max-width: 100%; }
 
   .demo-topbar { margin-bottom: 1.25rem; gap: 0.5rem; }
   .demo-topbar .br-btn { font-size: 0.78rem; padding: 0.45rem 0.7rem; }
 
-  /* — Hero — */
   .demo-hero {
     padding: 1.25rem;
     box-shadow: 5px 5px 0 0 var(--br-shadow-color);
@@ -283,28 +271,20 @@
   .demo-hero h1 { font-size: 1.65rem; }
   .demo-hero p  { font-size: 0.88rem; }
 
-  /* — Section — */
   .demo-section { margin-bottom: 2.75rem; scroll-margin-top: 130px; }
   .demo-section__title { font-size: 1.3rem; padding-bottom: 0.35rem; }
   .demo-section__desc  { font-size: 0.82rem; margin-bottom: 1rem; }
 
-  /* — Preview — */
-  .demo-preview {
-    padding: 1rem;
-    gap: 0.65rem;
-    flex-wrap: wrap;
-  }
+  .demo-preview { padding: 1rem; gap: 0.65rem; flex-wrap: wrap; }
 
-  /* ⭐ CODE BLOCK: rasio mobile — font lebih kecil, padding-top untuk copy button — */
+  /* ⭐ Code block — sesuaikan rasio mobile */
+  .demo-code-wrap { margin-bottom: 1.25rem; }
   .demo-code {
     font-size: 0.72rem;
     line-height: 1.55;
     padding: 2.4rem 0.75rem 0.75rem;
-    margin-bottom: 1.25rem;
   }
-
   .demo-code::-webkit-scrollbar { height: 8px; }
-
   .demo-code__copy {
     top: 0.4rem;
     right: 0.4rem;
@@ -318,21 +298,12 @@
    ===================================================== */
 @media (max-width: 480px) {
   .demo-main { padding: 1rem 0.85rem; }
-
   .demo-hero h1 { font-size: 1.4rem; letter-spacing: -0.03em; }
   .demo-hero p  { font-size: 0.82rem; }
-
   .demo-section__title { font-size: 1.15rem; }
 
-  .demo-code {
-    font-size: 0.66rem;
-    padding: 2.3rem 0.6rem 0.6rem;
-  }
-
-  .demo-code__copy {
-    font-size: 0.58rem;
-    padding: 0.2rem 0.4rem;
-  }
+  .demo-code { font-size: 0.66rem; padding: 2.3rem 0.6rem 0.6rem; }
+  .demo-code__copy { font-size: 0.58rem; padding: 0.2rem 0.4rem; }
 
   .demo-preview { padding: 0.85rem; gap: 0.5rem; }
 
