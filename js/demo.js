@@ -4,12 +4,39 @@
 (function () {
   "use strict";
 
-  /* — Copy to clipboard — */
+  /* -------------------------------------------------
+     1. AUTO-WRAP code block — biar tombol Copy tidak
+        ikut scroll saat kode di-scroll horizontal.
+     ------------------------------------------------- */
+  (function wrapCodeBlocks() {
+    document.querySelectorAll(".demo-code").forEach((pre) => {
+      // Skip kalau sudah dibungkus
+      if (pre.parentElement.classList.contains("demo-code-wrap")) return;
+
+      const wrapper = document.createElement("div");
+      wrapper.className = "demo-code-wrap";
+
+      // Ambil tombol Copy dari dalam <pre>
+      const copyBtn = pre.querySelector(".demo-code__copy");
+      if (copyBtn) pre.removeChild(copyBtn);
+
+      // Sisipkan wrapper di posisi <pre>, lalu pindahkan <pre> + button ke dalamnya
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+      if (copyBtn) wrapper.appendChild(copyBtn);
+    });
+  })();
+
+  /* -------------------------------------------------
+     2. Copy to clipboard
+     ------------------------------------------------- */
   document.addEventListener("click", async (e) => {
     const btn = e.target.closest("[data-copy]");
     if (!btn) return;
-    const codeBlock = btn.closest(".demo-code");
-    const code = codeBlock ? codeBlock.querySelector("code") : null;
+
+    // Cari code di wrapper (parent tombol), fallback ke .demo-code
+    const wrapper = btn.closest(".demo-code-wrap") || btn.parentElement;
+    const code = wrapper ? wrapper.querySelector("code") : null;
     if (!code) return;
 
     const text = code.innerText;
@@ -25,11 +52,15 @@
         btn.style.color = "";
       }, 1200);
     } catch {
-      window.BrutalistUI && window.BrutalistUI.showToast("Gagal copy", "danger");
+      if (window.BrutalistUI) {
+        window.BrutalistUI.showToast("Gagal copy", "danger");
+      }
     }
   });
 
-  /* — Active nav highlight on scroll — */
+  /* -------------------------------------------------
+     3. Active nav highlight on scroll
+     ------------------------------------------------- */
   const sections = document.querySelectorAll(".demo-section[id]");
   const navLinks = document.querySelectorAll(".demo-sidebar__nav a");
 
@@ -50,10 +81,14 @@
     sections.forEach((s) => observer.observe(s));
   }
 
-  /* — Smooth scroll — */
+  /* -------------------------------------------------
+     4. Smooth scroll
+     ------------------------------------------------- */
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener("click", (e) => {
-      const target = document.querySelector(a.getAttribute("href"));
+      const href = a.getAttribute("href");
+      if (href === "#") return;
+      const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
         target.scrollIntoView({ behavior: "smooth", block: "start" });
