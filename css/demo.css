@@ -1,0 +1,216 @@
+/* =====================================================
+   DEMO / SHOWCASE STYLES
+   (Bukan bagian library — hanya untuk halaman dokumentasi)
+   ===================================================== */
+
+.demo-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+  align-items: start; /* ⭐ FIX: cegah item stretch setinggi konten utama */
+}
+
+/* — Sidebar — */
+.demo-sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-right: 3px solid var(--br-border);
+  background: var(--br-surface-alt);
+  padding: 1.25rem 0.75rem 3rem 1rem; /* ⭐ padding-bottom ekstra */
+  scrollbar-width: thin;               /* Firefox */
+  scrollbar-color: var(--br-border) var(--br-surface);
+}
+
+/* ⭐ Scrollbar custom agar kelihatan jelas (WebKit) */
+.demo-sidebar::-webkit-scrollbar { width: 10px; }
+.demo-sidebar::-webkit-scrollbar-track {
+  background: var(--br-surface);
+  border-left: 2px solid var(--br-border);
+}
+.demo-sidebar::-webkit-scrollbar-thumb {
+  background: var(--br-border);
+  border: 2px solid var(--br-surface);
+}
+.demo-sidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--br-primary);
+}
+
+.demo-sidebar__brand {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 3px solid var(--br-border);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.demo-sidebar__brand span {
+  background: var(--br-primary);
+  border: 3px solid var(--br-border);
+  padding: 0.1rem 0.4rem;
+  color: #1A1A1A;
+  font-size: 0.9rem;
+}
+
+.demo-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.demo-sidebar__nav a {
+  display: block;
+  padding: 0.42rem 0.65rem;   /* ⭐ sedikit lebih rapat */
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.83rem;          /* ⭐ sedikit lebih kecil */
+  color: var(--br-text);
+  border: 2px solid transparent;
+  transition: background 150ms, border-color 150ms;
+}
+
+.demo-sidebar__nav a:hover {
+  background: var(--br-secondary);
+  border-color: var(--br-border);
+}
+
+.demo-sidebar__nav a.is-active {
+  background: var(--br-primary);
+  border-color: var(--br-border);
+}
+
+.demo-sidebar__group {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+  color: var(--br-text-muted);
+  margin: 0.85rem 0 0.3rem;
+  padding-left: 0.65rem;
+}
+
+/* — Main — */
+.demo-main {
+  padding: 2rem 2.5rem;
+  max-width: 1100px;
+  min-width: 0; /* ⭐ cegah overflow di grid */
+}
+
+.demo-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.demo-hero {
+  border: 3px solid var(--br-border);
+  background: var(--br-primary);
+  padding: 2rem;
+  box-shadow: 8px 8px 0 0 var(--br-shadow-color);
+  margin-bottom: 3rem;
+  color: #1A1A1A;
+}
+
+.demo-hero h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
+.demo-hero p  { margin: 0; font-weight: 600; max-width: 600px; }
+
+/* — Section — */
+.demo-section {
+  margin-bottom: 4rem;
+  scroll-margin-top: 1rem;
+}
+
+.demo-section__title {
+  font-size: 1.8rem;
+  border-bottom: 3px solid var(--br-border);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.demo-section__desc {
+  color: var(--br-text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+/* — Preview Box — */
+.demo-preview {
+  border: 3px solid var(--br-border);
+  background: var(--br-surface);
+  padding: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.demo-preview--column { flex-direction: column; align-items: stretch; }
+
+/* — Code Block — */
+.demo-code {
+  position: relative;
+  border: 3px solid var(--br-border);
+  background: #0F0F0F;
+  color: #F5F1E8;
+  padding: 1rem;
+  font-family: var(--br-font-mono);
+  font-size: 0.82rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  white-space: pre;
+  line-height: 1.5;
+}
+
+.demo-code__copy {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  border: 2px solid #F5F1E8;
+  background: #0F0F0F;
+  color: #F5F1E8;
+  padding: 0.25rem 0.6rem;
+  font-family: inherit;
+  font-size: 0.7rem;
+  font-weight: 800;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.demo-code__copy:hover { background: var(--br-primary); color: #1A1A1A; }
+
+/* — Responsive — */
+@media (max-width: 768px) {
+  .demo-layout { grid-template-columns: 1fr; }
+  .demo-sidebar {
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 3px solid var(--br-border);
+    padding: 1rem;
+  }
+  .demo-sidebar::-webkit-scrollbar { display: none; }
+  .demo-sidebar__nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+  .demo-sidebar__nav a {
+    border: 2px solid var(--br-border);
+    padding: 0.35rem 0.6rem;
+  }
+  .demo-sidebar__group {
+    width: 100%;
+    margin: 0.5rem 0 0.25rem;
+  }
+  .demo-main { padding: 1.25rem; }
+  .demo-hero h1 { font-size: 1.8rem; }
+}

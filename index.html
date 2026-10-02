@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brutalist UI — Neo-Brutalism Component Library</title>
+  <meta name="description" content="Library komponen UI Neo-Brutalism yang ringan, tanpa dependencies, dan mendukung dark mode." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Library -->
+  <link rel="stylesheet" href="css/brutalist.css" />
+  <!-- Demo only -->
+  <link rel="stylesheet" href="css/demo.css" />
+</head>
+<body>
+
+<div class="demo-layout">
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="demo-sidebar">
+    <div class="demo-sidebar__brand">
+      Brutalist <span>UI</span>
+    </div>
+    <nav class="demo-sidebar__nav">
+      <div class="demo-sidebar__group">Getting Started</div>
+      <a href="#intro">Introduksi</a>
+      <a href="#colors">Warna & Token</a>
+
+      <div class="demo-sidebar__group">Komponen</div>
+      <a href="#buttons">Buttons</a>
+      <a href="#cards">Cards</a>
+      <a href="#forms">Forms</a>
+      <a href="#badges">Badges</a>
+      <a href="#alerts">Alerts</a>
+      <a href="#modals">Modal</a>
+      <a href="#accordion">Accordion</a>
+      <a href="#tabs">Tabs</a>
+      <a href="#progress">Progress</a>
+      <a href="#avatars">Avatars</a>
+      <a href="#tables">Tables</a>
+      <a href="#dropdown">Dropdown</a>
+      <a href="#toast">Toast</a>
+      <a href="#tooltip">Tooltip</a>
+      <a href="#misc">Misc</a>
+    </nav>
+  </aside>
+
+  <!-- ===================== MAIN ===================== -->
+  <main class="demo-main">
+
+    <!-- Topbar -->
+    <div class="demo-topbar">
+      <span class="br-badge br-badge--success">v1.0.0</span>
+      <div class="br-flex br-gap-sm">
+        <button class="br-btn br-btn--sm" data-br-theme-toggle aria-pressed="false">
+          <span data-br-theme-icon="sun">☀ Light</span>
+          <span data-br-theme-icon="moon" style="display:none;">☾ Dark</span>
+        </button>
+        <a class="br-btn br-btn--sm br-btn--inverted" href="#" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <header class="demo-hero" id="intro">
+      <h1>Brutalist UI</h1>
+      <p>Library komponen Neo-Brutalism yang ringan, tanpa dependencies, dan mendukung dark mode dinamis. Copy-paste, langsung pakai.</p>
+    </header>
+
+    <!-- ============== COLORS ============== -->
+    <section class="demo-section" id="colors">
+      <h2 class="demo-section__title">01 — Warna & Token</h2>
+      <p class="demo-section__desc">Semua warna diambil dari CSS variables. Ubah satu variabel, ubah seluruh tema.</p>
+
+      <div class="demo-preview">
+        <div class="br-card" style="background: var(--br-primary); color: #1A1A1A;">Primary</div>
+        <div class="br-card" style="background: var(--br-secondary); color: #1A1A1A;">Secondary</div>
+        <div class="br-card" style="background: var(--br-success); color: #1A1A1A;">Success</div>
+        <div class="br-card" style="background: var(--br-info); color: #1A1A1A;">Info</div>
+        <div class="br-card" style="background: var(--br-danger); color: #1A1A1A;">Danger</div>
+      </div>
+
+      <pre class="demo-code"><button class="demo-code__copy" data-copy>Copy</button><code>:root {
+  --br-primary:   #4ECDC4;
+  --br-secondary: #FFD93D;
+  --br-success:   #95E1A3;
+  --br-info:      #A8D8FF;
+  --br-danger:    #FF6B6B;
+}</code></pre>
+    </section>
+
+    <!-- ============== BUTTONS ============== -->
+    <section class="demo-section" id="buttons">
+      <h2 class="demo-section__title">02 — Buttons</h2>
+      <p class="demo-section__desc">6 varian warna, 3 ukuran, state disabled, dan block button.</p>
+
+      <div class="demo-preview">
+        <button class="br-btn">Default</button>
+        <button class="br-btn br-btn--primary">Primary</button>
+        <button class="br-btn br-btn--secondary">Secondary</button>
+        <button class="br-btn br-btn--success">Success</button>
+        <button class="br-btn br-btn--info">Info</button>
+        <button class="br-btn br-btn--danger">Danger</button>
+        <button class="br-btn br-btn--ghost">Ghost</button>
+        <button class="br-btn" disabled>Disabled</button>
+      </div>
+
+      <div class="demo-preview">
+        <button class="br-btn br-btn--sm br-btn--primary">Small</button>
+        <button class="br-btn br-btn--primary">Medium</button>
+        <button class="br-btn br-btn--lg br-btn--primary">Large</button>
+      </div>
+
+      <pre class="demo-code"><button class="demo-code__copy" data-copy>Copy</button><code>&lt;button class="br-btn br-btn--primary"&gt;Primary&lt;/button&gt;
+&lt;button class="br-btn br-btn--secondary"&gt;Secondary&lt;/button&gt;
+&lt;button class="br-btn br-btn--danger"&gt;Danger&lt;/button&gt;
+&lt;button class="br-btn br-btn--sm"&gt;Small&lt;/button&gt;
+&lt;button class="br-btn br-btn--lg br-btn--primary"&gt;Large&lt;/button&gt;
+&lt;button class="br-btn br-btn--block br-btn--primary"&gt;Block&lt;/button&gt;</code></pre>
+
+      <button class="br-btn br-btn--block br-btn--primary">Block Button</button>
+    </section>
+
+    <!-- ============== CARDS ============== -->
+    <section class="demo-section" id="cards">
+      <h2 class="demo-section__title">03 — Cards</h2>
+      <p class="demo-section__desc">Card dasar, dengan hover efek, header, body, dan footer.</p>
+
+      <div class="demo-preview">
+        <div class="br-card br-card--hover" style="max-width: 280px;">
+          <div class="br-card__header">Judul Kartu</div>
+          <div class="br-card__body">
+            Ini contoh body kartu. Bisa diisi teks, gambar, atau apa saja.
+          </div>
+          <div class="br-card__footer">
+            <button class="br-btn br-btn--sm br-btn--primary">Aksi</button>
+            <button class="br-btn br-btn--sm">Batal</button>
+          </div>
+        </div>
+      </div>
+
+      <pre class="demo-code"><button class="demo-code__copy" data-copy>Copy</button><code>&lt;div class="br-card br-card--hover"&gt;
+  &lt;div class="br-card__header"&gt;Judul Kartu&lt;/div&gt;
+  &lt;div class="br-card__body"&gt;Isi kartu...&lt;/div&gt;
+  &lt;div class="br-card__footer"&gt;
+    &lt;button class="br-btn br-btn--sm br-btn--primary"&gt;Aksi&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- ============== FORMS ============== -->
+    <section class="demo-section" id="forms">
+      <h2 class="demo-section__title">04 — Forms</h2>
+      <p class="demo-section__desc">Input, textarea, select, checkbox, radio, dan switch.</p>
+
+      <div class="demo-preview demo-preview--column" style="max-width: 480px;">
+        <div>
+          <label class="br-label" for="demo-nama">Nama</label>
+          <input class="br-input" id="demo-nama" type="text" placeholder="Ketik nama..." />
+        </div>
+        <div>
+          <label class="br-label" for="demo-email">Email (error)</label>
+          <input class="br-input br-input--error" id="demo-email" type="email" value="salah@" />
+          <div class="br-help br-help--error">Format email tidak valid.</div>
+        </div>
+        <div>
+          <label class="br-label" for="demo-pesan">Pesan</label>
+          <textarea class="br-textarea" id="demo-pesan" placeholder="Tulis pesan..."></textarea>
+        </div>
+        <div>
+          <label class="br-label" for="demo-bahasa">Bahasa</label>
+          <select class="br-select" id="demo-bahasa">
+            <option>Indonesia</option>
+            <option>English</option>
+            <option>日本語</option>
+          </select>
+        </div>
+        <label class="br-check">
+          <input type="checkbox" checked />
+          <span class="br-check__box"></span>
+          Saya setuju
+        </label>
+        <label class="br-check">
+          <input type="radio" name="rad" checked />
+          <span class="br-check__box"></span>
+          Opsi A
+        </label>
+        <label class="br-check">
+          <input type="radio" name="rad" />
+          <span class="br-check__box"></span>
+          Opsi B
+        </label>
+        <label class="br-switch">
+          <input type="checkbox" checked />
+          <span class="br-switch__track"><span class="br-switch__thumb"></span></span>
+          Aktifkan notifikasi
+        </label>
+      </div>
+
+      <pre class="demo-code"><button class="demo-code__copy" data-copy>Copy</button><code>&lt;label class="br-label"&gt;Nama&lt;/label&gt;
+&lt;input class="br-input" type="text" placeholder="Ketik nama..." /&gt;
+
+&lt;textarea class="br-textarea"&gt;&lt;/textarea&gt;
+
+&lt;select class="br-select"&gt;&lt;option&gt;Indonesia&lt;/option&gt;&lt;/select&gt;
+
+&lt;label class="br-check"&gt;
+  &lt;input type="checkbox" /&gt;
+  &lt;span class="br-check__box"&gt;&lt;/span&gt;
+  Saya setuju
+&lt;/label&gt;
+
+&lt;label class="br-switch"&gt;
+  &lt;input type="checkbox" /&gt;
+  &lt;span class="br-switch__track"&gt;&lt;span class="br-switch__thumb"&gt;&lt;/span&gt;&lt;/span&gt;
+  Notifikasi
+&lt;/label&gt;</code></pre>
+    </section>
+
+    <!-- ============== BADGES ============== -->
+    <section class="demo-section" id="badges">
+      <h2 class="demo-section__title">05 — Badges</h2>
+      <p class="demo-section__desc">Label kecil dengan warna tegas untuk kategori atau status.</p>
+
+      <div class="demo-preview">
+        <span class="br-badge">Default</span>
+        <span class="br-badge br-badge--primary">Primary</span>
+        <span class="br-badge br-badge--secondary">Secondary</span>
+        <span class="br-badge br-badge--success">Success</span>
+        <span class="br-badge br-badge--info">Info</span>
+        <span class="br-badge br-badge--danger">Danger</span>
+      </div>
+
+      <pre class="demo-code"><button class="demo-code__copy" data-copy>Copy</button><code>&lt;span class="br-badge br-badge--primary"&gt;Primary&lt;/span&gt;
+&lt;span class="br-badge br-badge--success"&gt;Success&lt;/span&gt;</code></pre>
+    </section>
+
+    <!-- ============== ALERTS ============== -->
+    <section class="demo-section" id="alerts">
+      <h2 class="demo-section__title">06 — Alerts</h2>
+      <p class="demo-section__desc">Notifikasi inline dengan tombol close.</p>
+
+      <div class="br-alert br-alert--info">
+        <div class="br-alert__icon">i</div>
+        <div class="br-alert__content">
+          <p class="br-alert__title">Info</p>
+          <p class="br-alert__desc">Ini alert info untuk memberi tahu sesuatu.</p>
+        </div>
+        <button class="br-alert__close" data-br-dismiss>×</button>
+      </div>
+
+      <div class="br-alert br-alert--success">
+        <div class="br-alert__icon">✓</div>
+        <div class="br-alert__content">
+          <p class="br-alert__title">Berhasil</p>
+          <p class="br-alert__desc">Data berhasil disimpan.</p>
+        </div>
+        <button class="br-alert__close" data-br-dismiss>×</button>
+      </div>
+
+      <div class="br-alert br-alert--warning">
+        <div class="br-alert__icon">!</div>
+        <div class="br-alert__content">
+          <p class="br-alert__title">Perhatian</p>
+          <p class="br-alert__desc">Periksa kembali data sebelum lanjut.</p>
+        </div>
+        <button class="br-alert__close" data-br-dismiss>×</button>
+      </div>
+
+      <div class="br-alert br-alert--danger">
+        <div class="br-alert__icon">×</div>
+        <div class="br-alert__content">
+          <p class="br-alert__title">Gagal</p>
+          <p class="br-alert__desc">Terjadi kesalahan, coba lagi nanti.</p>
+        </div>
+        <button class="br-alert__close" data-br-dismiss>×</button>
+      </div>
+
+      <pre class="demo-code"><button class="demo-code__copy" data-copy>Copy</button><code>&lt;div class="br-alert br-alert--success"&gt;
+  &lt;div class="br-alert__icon"&gt;✓&lt;/div&gt;
+  &lt;div class="br-alert__content"&gt;
+    &lt;p class="br-alert__title"&gt;Berhasil&lt;/p&gt;
+    &lt;p class="br-alert__desc"&gt;Data berhasil disimpan.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;button class="br-alert__close" data-br-dismiss&gt;×&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- ============== MODAL ============== -->
+    <section class="demo-section" id="modals">
+      <h2 class="demo-section__title">07 — Modal</h2>
+      <p class="demo-section__desc">Dialog dengan overlay, animasi pop, dan tombol escape.</p>
+
+      <div class="demo-preview">
+        <button class="br-btn br-btn--primary" data-br-modal-open="#modalDemo">Buka Modal</button>
+      </div>
+
+      <pre class="demo-code"><button class="demo-code__copy" data-copy>Copy</button><code>&lt;button class="br-btn br-btn--primary" data-br-modal-open="#modalDemo"&gt;
+  Buka Modal
+&lt;/button&gt;
+
+&lt;div class="br-modal" id="modalDemo"&gt;
+  &lt;div class="br-modal__overlay"&gt;&lt;/div&gt;
+  &lt;div class="br-modal__dialog"&gt;
+    &lt;div class="br-modal__header"&gt;
+      Judul Modal
+      &lt;button class="br-alert__close" data-br-modal-close&gt;×&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="br-modal__body"&gt;Isi modal...&lt;/div&gt;
+    &lt;div class="br-modal__footer"&gt;
+      &lt;button class="br-btn" data-br-modal-close&gt;Batal&lt;/button&gt;
+      &lt;button class="br-btn br-btn--primary"&gt;Simpan&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- ============== ACCORDION ============== -->
+    <section class="demo-section" id="accordion">
+      <h2 class="demo-section__title">08 — Accordion</h2>
+      <p class="demo-section__desc">Bisa single open (pakai <code>data-br-accordion-group</code>) atau multiple.</p>
+
+      <div data-br-accordion-group>
+        <div class="br-accordion is-open">
+          <div class="br-accordion__header">
+            Apa itu Neo-Brutalism?
+            <span class="br-accordion__icon">+</span>
+          </div>
+          <div class="br-accordion__body">
+            Neo-Brutalism adalah gaya desain yang menonjolkan border tebal, warna kontras, dan hard shadow tanpa blur.
+          </div>
+        </div>
+        <div class="br-accordion">
+          <div class="br-accordion__header">
+            Apakah library ini gratis?
+            <span class="br-accordion__icon">+</span>
+          </div>
+          <div class="br-accordion__body">
+            Ya, bebas dipakai untuk proyek pribadi maupun komersial.
+          </div>
+        </div>
+        <div class="br-accordion">
+          <div class="br-accordion__header">
+            Butuh dependencies?
+            <span class="br-accordion__icon">+</span>
+          </div>
+          <div class="br-accordion__body">
+            Tidak. Hanya HTML, CSS, dan Vanilla JS. Tanpa framework.
+          </div>
+        </div>
+      </div>
+
+      <div class="br-mt"></div>
+
+      <pre class="demo-code"><button class="demo-code__copy" data-copy>Copy</button><code>&lt;div data-br-accordion-group&gt;
+  &lt;div class="br-accordion is-open"&gt;
+    &lt;div class="br-accordion__header"&gt;
+      Judul &lt;span class="br-accordion__icon"&gt;+&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="br-accordion__body"&gt;Isi...&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- ============== TABS ============== -->
+    <section class="demo-section" id="tabs">
+      <h2 class="demo-section__title">09 — Tabs</h2>
+      <p class="demo-section__desc">Navigasi tab dengan konten panel yang bisa diganti.</p>
+
+      <div class="br-tabs">
+        <div class="br-tabs__nav">
+          <button class="br-tab is-active" data-br-tab="tab1">Tab 1</button>
+          <button class="br-tab" data-br-tab="tab2">Tab 2</button>
+          <button class="br-tab" data-br-tab="tab3">Tab 3</button>
+        </div>
+        <div class="br-tabs__panel is-active" data-br-tab-panel="tab1">Konten untuk Tab 1.</div>
+        <div class="br-tabs__panel" data-br-tab-panel="tab2">Konten untuk Tab 2.</div>
+        <div class="br-tabs__panel" data-br-tab-panel="tab3">Konten untuk Tab 3.</div>
+      </div>
+
+      <pre class="demo-code"><button class="demo-code__copy" data-copy>Copy</button><code>&lt;div class="br-tabs"&gt;
+  &lt;div class="br-tabs__nav"&gt;
+    &lt;button class="br-tab is-active" data-br-tab="t1"&gt;Tab 1&lt;/button&gt;
+    &lt;button class="br-tab" data-br-tab="t2"&gt;Tab 2&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="br-tabs__panel is-active" data-br-tab-panel="t1"&gt;Isi 1&lt;/div&gt;
+  &lt;div class="br-tabs__panel" data-br-tab-panel="t2"&gt;Isi 2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- ============== PROGRESS ============== -->
+    <section class="demo-section" id="progress">
+      <h2 class="demo-section__title">10 — Progress</h2>
+      <p class="demo-section__desc">Progress bar dengan border tebal dan label persen.</p>
+
+      <div class="br-progress br-mb">
+        <div class="br-progress__bar" style="width: 35%;">35%</div>
+      </div>
+      <div class="br-progress br-progress--lg">
+        <div class="br-progress__bar" style="width: 72%;">72%</div>
+      </div>
+
+      <div class="br-mt"></div>
+
+      <pre class="demo-code"><button class="demo-code__copy" data-copy>Copy</button><code>&lt;div class="br-progress"&gt;
+  &lt;div class="br-progress__bar" style="width: 35%;"&gt;35%&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- ============== AVATARS ============== -->
+    <section class="demo-section" id="avatars">
+      <h2 class="demo-section__title">11 — Avatars</h2>
+      <p class="demo-section__desc">Bisa inisial, gambar, atau kombinasi. Tersedia ukuran sm, default, lg.</p>
+
+      <div class="demo-preview">
+        <span class="br-avatar br-avatar--sm br-avatar--circle">A</span>
+        <span class="br-avatar br-avatar--circle">KI</span>
+        <span class="br-avatar br-avatar--lg">KH</span>
+        <span class="br-avatar br-avatar--square">M</span>
+      </div>
+
+      <pre class="demo-code"><button class="demo-code__copy" data-copy>Copy</button><code>&lt;span class="br-avatar br-avatar--circle"&gt;KI&lt;/span&gt;
+&lt;span class="br-avatar br-avatar--lg"&gt;KH&lt;/span&gt;</code></pre>
+    </section>
+
+    <!-- ============== TABLES ============== -->
+    <section class="demo-section" id="tables">
+      <h2 class="demo-section__title">12 — Tables</h2>
+      <p class="demo-section__desc">Tabel dengan header berwarna dan hover row.</p>
+
+      <table class="br-table">
+        <thead>
+          <tr><th>Nama</th><th>Peran</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Khadhor</td><td>Full-Stack</td><td><span class="br-badge br-badge--success">Aktif</span></td></tr>
+          <tr><td>Iksan</td><td>UI/UX</td><td><span class="br-badge br-badge--info">Cuti</span></td></tr>
+          <tr><td>Mufid</td><td>Backend</td><td><span class="br-badge br-badge--success">Aktif</span></td></tr>
+        </tbody>
+      </table>
+
+      <div class="br-mt"></div>
+
+      <pre class="demo-code"><button class="demo-code__copy" data-copy>Copy</button><code>&lt;table class="br-table"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;&lt;th&gt;Nama&lt;/th&gt;&lt;th&gt;Peran&lt;/th&gt;&lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;Khadhor&lt;/td&gt;&lt;td&gt;Dev&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+    </section>
+
+    <!-- ============== DROPDOWN ============== -->
+    <section class="demo-section" id="dropdown">
+      <h2 class="demo-section__title">13 — Dropdown</h2>
+      <p class="demo-section__desc">Menu dropdown dengan klik di luar untuk menutup.</p>
+
+      <div class="demo-preview">
+        <div class="br-dropdown">
+          <button class="br-btn br-btn--primary" data-br-dropdown-trigger>
+            Menu ▾
+          </button>
+          <div class="br-dropdown__menu">
+            <button class="br-dropdown__item">Profil</button>
+            <button class="br-dropdown__item">Pengaturan</button>
+            <button class="br-dropdown__item">Keluar</button>
+          </div>
+        </div>
+      </div>
+
+      <pre class="demo-code"><button class="demo-code__copy" data-copy>Copy</button><code>&lt;div class="br-dropdown"&gt;
+  &lt;button class="br-btn" data-br-dropdown-trigger&gt;Menu ▾&lt;/button&gt;
+  &lt;div class="br-dropdown__menu"&gt;
+    &lt;button class="br-dropdown__item"&gt;Profil&lt;/button&gt;
+    &lt;button class="br-dropdown__item"&gt;Keluar&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- ============== TOAST ============== -->
+    <section class="demo-section" id="toast">
+      <h2 class="demo-section__title">14 — Toast</h2>
+      <p class="demo-section__desc">Notifikasi mengambang di kanan atas, auto dismiss.</p>
+
+      <div class="demo-preview">
+        <button class="br-btn br-btn--success" onclick="BrutalistUI.showToast('Berhasil disimpan!', 'success')">Success</button>
+        <button class="br-btn br-btn--danger"  onclick="BrutalistUI.showToast('Terjadi kesalahan!', 'danger')">Danger</button>
+        <button class="br-btn br-btn--info"    onclick="BrutalistUI.showToast('Info terbaru', 'info')">Info</button>
+        <button class="br-btn br-btn--secondary" onclick="BrutalistUI.showToast('Peringatan!', 'warning')">Warning</button>
+      </div>
+
+      <pre class="demo-code"><button class="demo-code__copy" data-copy>Copy</button><code>BrutalistUI.showToast('Berhasil!', 'success');
+BrutalistUI.showToast('Gagal!', 'danger');
+// Tipe: success | danger | info | warning</code></pre>
+    </section>
+
+    <!-- ============== TOOLTIP ============== -->
+    <section class="demo-section" id="tooltip">
+      <h2 class="demo-section__title">15 — Tooltip</h2>
+      <p class="demo-section__desc">Muncul saat hover, pakai CSS-only.</p>
+
+      <div class="demo-preview">
+        <span class="br-tooltip">
+          <button class="br-btn">Hover Saya</button>
+          <span class="br-tooltip__text">Halo! Ini tooltip.</span>
+        </span>
+      </div>
+
+      <pre class="demo-code"><button class="demo-code__copy" data-copy>Copy</button><code>&lt;span class="br-tooltip"&gt;
+  &lt;button class="br-btn"&gt;Hover&lt;/button&gt;
+  &lt;span class="br-tooltip__text"&gt;Halo!&lt;/span&gt;
+&lt;/span&gt;</code></pre>
+    </section>
+
+    <!-- ============== MISC ============== -->
+    <section class="demo-section" id="misc">
+      <h2 class="demo-section__title">16 — Misc</h2>
+      <p class="demo-section__desc">Breadcrumb, divider, dan skeleton loader.</p>
+
+      <h3>Breadcrumb</h3>
+      <nav class="br-breadcrumb br-mb">
+        <span class="br-breadcrumb__item">Home</span>
+        <span class="br-breadcrumb__sep">/</span>
+        <span class="br-breadcrumb__item">Komponen</span>
+        <span class="br-breadcrumb__sep">/</span>
+        <span class="br-breadcrumb__item br-breadcrumb__item--active">Breadcrumb</span>
+      </nav>
+
+      <hr class="br-divider" />
+
+      <h3>Skeleton</h3>
+      <div class="br-skeleton" style="width: 60%; margin-bottom: 0.5rem;"></div>
+      <div class="br-skeleton" style="width: 90%; margin-bottom: 0.5rem;"></div>
+      <div class="br-skeleton" style="width: 40%;"></div>
+
+      <div class="br-mt"></div>
+
+      <pre class="demo-code"><button class="demo-code__copy" data-copy>Copy</button><code>&lt;nav class="br-breadcrumb"&gt;
+  &lt;span class="br-breadcrumb__item"&gt;Home&lt;/span&gt;
+  &lt;span class="br-breadcrumb__sep"&gt;/&lt;/span&gt;
+  &lt;span class="br-breadcrumb__item br-breadcrumb__item--active"&gt;Halaman&lt;/span&gt;
+&lt;/nav&gt;
+
+&lt;hr class="br-divider" /&gt;
+&lt;div class="br-skeleton"&gt;&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- Footer -->
+    <footer class="br-mt" style="padding-top: 2rem; border-top: 3px solid var(--br-border); text-align: center; font-size: 0.85rem;">
+      <p>Dibuat oleh <strong>Khadhor Iksan M. M.</strong> · Brutalist UI v1.0.0</p>
+    </footer>
+
+  </main>
+</div>
+
+<!-- ===================== MODAL ===================== -->
+<div class="br-modal" id="modalDemo" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="br-modal__overlay"></div>
+  <div class="br-modal__dialog">
+    <div class="br-modal__header" id="modalTitle">
+      Konfirmasi
+      <button class="br-alert__close" data-br-modal-close aria-label="Tutup">×</button>
+    </div>
+    <div class="br-modal__body">
+      Apakah kamu yakin ingin menyimpan perubahan ini? Tindakan ini tidak dapat dibatalkan.
+    </div>
+    <div class="br-modal__footer">
+      <button class="br-btn" data-br-modal-close>Batal</button>
+      <button class="br-btn br-btn--primary" data-br-modal-close
+              onclick="BrutalistUI.showToast('Perubahan disimpan!', 'success')">
+        Simpan
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script src="js/brutalist.js"></script>
+<script src="js/demo.js"></script>
+</body>
+</html>
