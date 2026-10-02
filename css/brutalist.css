@@ -935,3 +935,80 @@ a {
   position: relative;
   z-index: 1;
 }
+
+/* =====================================================
+   23. MODAL — FORCE VIEWPORT POSITIONING
+   Override semua aturan modal sebelumnya agar tidak
+   terpotong di mobile dan selalu di atas topbar.
+   ===================================================== */
+
+.br-modal {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important; /* dynamic viewport height — lebih akurat di mobile */
+  z-index: 99999 !important;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.br-modal.is-open {
+  display: flex !important;
+}
+
+.br-modal__overlay {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: rgba(0, 0, 0, 0.65) !important;
+  z-index: 0;
+}
+
+.br-modal__dialog {
+  position: relative !important;
+  z-index: 1 !important;
+  width: 100%;
+  max-width: 480px;
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+  background: var(--br-surface);
+  border: var(--br-bw) solid var(--br-border);
+  box-shadow: var(--br-shadow-lg);
+}
+
+/* — Mobile: sheet dari bawah, tetap muat viewport — */
+@media (max-width: 640px) {
+  .br-modal {
+    align-items: flex-end;
+    padding: 0;
+    height: 100dvh !important;
+  }
+
+  .br-modal__dialog {
+    max-width: 100%;
+    max-height: calc(100dvh - 0.5rem);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    box-shadow: 0 -6px 0 0 var(--br-shadow-color);
+  }
+
+  .br-modal__header { padding: 0.9rem 1rem; font-size: 1rem; }
+  .br-modal__body   { padding: 1rem; font-size: 0.9rem; }
+  .br-modal__footer {
+    padding: 0.9rem 1rem;
+    flex-direction: column-reverse;
+    gap: 0.6rem;
+  }
+  .br-modal__footer .br-btn { width: 100%; }
+}
