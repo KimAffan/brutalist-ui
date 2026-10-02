@@ -60,7 +60,7 @@
           <span data-br-theme-icon="sun">☀ Light</span>
           <span data-br-theme-icon="moon" style="display:none;">☾ Dark</span>
         </button>
-        <a class="br-btn br-btn--sm br-btn--inverted" href="#" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="br-btn br-btn--sm br-btn--inverted" href="https://github.com/KimAffan/brutalist-ui" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
       </div>
     </div>
 
@@ -295,11 +295,11 @@
       <p class="demo-section__desc">Dialog dengan overlay, animasi pop, dan tombol escape.</p>
 
       <div class="demo-preview">
-<button class="br-btn br-btn--primary"
-        data-br-modal-open="#modalDemo"
-        onclick="window.BrutalistUI && window.BrutalistUI.openModal('#modalDemo')">
-  Buka Modal
-</button>
+        <button class="br-btn br-btn--primary"
+                data-br-modal-open="#modalDemo"
+                onclick="window.BrutalistUI && window.BrutalistUI.openModal('#modalDemo')">
+          Buka Modal
+        </button>
       </div>
 
       <pre class="demo-code"><button class="demo-code__copy" data-copy>Copy</button><code>&lt;button class="br-btn br-btn--primary" data-br-modal-open="#modalDemo"&gt;
@@ -562,8 +562,9 @@ BrutalistUI.showToast('Gagal!', 'danger');
 </div>
 
 <!-- ===================== MODAL ===================== -->
+<!-- ⭐ Modal HARUS di luar .demo-layout, langsung di bawah <body> -->
 <div class="br-modal" id="modalDemo" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="br-modal__overlay"></div>
+  <div class="br-modal__overlay" data-br-modal-close></div>
   <div class="br-modal__dialog">
     <div class="br-modal__header" id="modalTitle">
       Konfirmasi
@@ -575,7 +576,7 @@ BrutalistUI.showToast('Gagal!', 'danger');
     <div class="br-modal__footer">
       <button class="br-btn" data-br-modal-close>Batal</button>
       <button class="br-btn br-btn--primary" data-br-modal-close
-              onclick="BrutalistUI.showToast('Perubahan disimpan!', 'success')">
+              onclick="window.BrutalistUI && BrutalistUI.showToast('Perubahan disimpan!', 'success')">
         Simpan
       </button>
     </div>
