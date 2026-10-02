@@ -901,3 +901,37 @@ a {
   .br-progress--lg { height: 30px; }
   .br-progress--lg .br-progress__bar { font-size: 0.78rem; }
 }
+
+/* =====================================================
+   22. MODAL OVERRIDE — pastikan selalu di atas & kelihatan
+   ===================================================== */
+.br-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.br-modal.is-open {
+  display: flex;
+}
+
+.br-modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.br-modal__dialog {
+  position: relative;
+  z-index: 1;
+}
